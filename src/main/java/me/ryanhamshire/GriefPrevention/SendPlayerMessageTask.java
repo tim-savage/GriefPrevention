@@ -19,6 +19,7 @@
 package me.ryanhamshire.GriefPrevention;
 
 import org.bukkit.ChatColor;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 //sends a message to a player
@@ -29,11 +30,18 @@ class SendPlayerMessageTask implements Runnable
     private final ChatColor color;
     private final String message;
 
-    public SendPlayerMessageTask(Player player, ChatColor color, String message)
+    public SendPlayerMessageTask(CommandSender sender, ChatColor color, String message)
     {
-        this.player = player;
         this.color = color;
         this.message = message;
+
+        if (sender instanceof Player)
+        {
+            player = (Player) sender;
+        }
+        else {
+            player = null;
+        }
     }
 
     @Override
