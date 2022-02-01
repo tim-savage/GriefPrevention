@@ -7,7 +7,6 @@ import me.ryanhamshire.GriefPrevention.TextMode;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
@@ -36,11 +35,6 @@ public final class AdminClaimListCommand implements CommandExecutor
     public boolean onCommand(@NotNull final CommandSender sender, @NotNull final Command command, @NotNull final String s, @NotNull final String[] args)
     {
         // command can be issued by player or console
-        Player player = null;
-        if (sender instanceof Player)
-        {
-            player = (Player) sender;
-        }
 
         //find admin claims
         Vector<Claim> claims = new Vector<>();
@@ -53,10 +47,10 @@ public final class AdminClaimListCommand implements CommandExecutor
         }
         if (claims.size() > 0)
         {
-            GriefPrevention.sendMessage(player, TextMode.Instr, Messages.ClaimsListHeader);
+            GriefPrevention.sendMessage(sender, TextMode.Instr, Messages.ClaimsListHeader);
             for (Claim claim : claims)
             {
-                GriefPrevention.sendMessage(player, TextMode.Instr, GriefPrevention.getfriendlyLocationString(claim.getLesserBoundaryCorner()));
+                GriefPrevention.sendMessage(sender, TextMode.Instr, GriefPrevention.getfriendlyLocationString(claim.getLesserBoundaryCorner()));
             }
         }
 

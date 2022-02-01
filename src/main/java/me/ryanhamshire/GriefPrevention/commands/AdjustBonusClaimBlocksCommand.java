@@ -10,7 +10,6 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
-import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Collections;
@@ -52,11 +51,6 @@ public final class AdjustBonusClaimBlocksCommand implements CommandExecutor, Tab
     public boolean onCommand(@NotNull final CommandSender sender, @NotNull final Command command, @NotNull final String s, @NotNull final String[] args)
     {
         // command can be issued by player or console
-        Player player = null;
-        if (sender instanceof Player)
-        {
-            player = (Player) sender;
-        }
 
         //requires exactly two parameters, the other player or group's name and the adjustment
         if (args.length != 2) return false;
@@ -78,9 +72,8 @@ public final class AdjustBonusClaimBlocksCommand implements CommandExecutor, Tab
             String permissionIdentifier = args[0].substring(1, args[0].length() - 1);
             int newTotal = plugin.dataStore.adjustGroupBonusBlocks(permissionIdentifier, adjustment);
 
-            GriefPrevention.sendMessage(player, TextMode.Success, Messages.AdjustGroupBlocksSuccess, permissionIdentifier, String.valueOf(adjustment), String.valueOf(newTotal));
-            if (player != null)
-                GriefPrevention.AddLogEntry(player.getName() + " adjusted " + permissionIdentifier + "'s bonus claim blocks by " + adjustment + ".");
+            GriefPrevention.sendMessage(sender, TextMode.Success, Messages.AdjustGroupBlocksSuccess, permissionIdentifier, String.valueOf(adjustment), String.valueOf(newTotal));
+            GriefPrevention.AddLogEntry(sender.getName() + " adjusted " + permissionIdentifier + "'s bonus claim blocks by " + adjustment + ".");
 
             return true;
         }
@@ -100,7 +93,7 @@ public final class AdjustBonusClaimBlocksCommand implements CommandExecutor, Tab
 
         if (targetPlayer == null)
         {
-            GriefPrevention.sendMessage(player, TextMode.Err, Messages.PlayerNotFound2);
+            GriefPrevention.sendMessage(sender, TextMode.Err, Messages.PlayerNotFound2);
             return true;
         }
 
@@ -109,9 +102,8 @@ public final class AdjustBonusClaimBlocksCommand implements CommandExecutor, Tab
         playerData.setBonusClaimBlocks(playerData.getBonusClaimBlocks() + adjustment);
         plugin.dataStore.savePlayerData(targetPlayer.getUniqueId(), playerData);
 
-        GriefPrevention.sendMessage(player, TextMode.Success, Messages.AdjustBlocksSuccess, targetPlayer.getName(), String.valueOf(adjustment), String.valueOf(playerData.getBonusClaimBlocks()));
-        if (player != null)
-            GriefPrevention.AddLogEntry(player.getName() + " adjusted " + targetPlayer.getName() + "'s bonus claim blocks by " + adjustment + ".", CustomLogEntryTypes.AdminActivity);
+        GriefPrevention.sendMessage(sender, TextMode.Success, Messages.AdjustBlocksSuccess, targetPlayer.getName(), String.valueOf(adjustment), String.valueOf(playerData.getBonusClaimBlocks()));
+        GriefPrevention.AddLogEntry(sender.getName() + " adjusted " + targetPlayer.getName() + "'s bonus claim blocks by " + adjustment + ".", CustomLogEntryTypes.AdminActivity);
 
         return true;
     }

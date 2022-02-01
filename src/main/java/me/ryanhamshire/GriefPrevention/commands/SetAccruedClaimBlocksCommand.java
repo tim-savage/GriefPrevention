@@ -10,7 +10,6 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
-import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Collections;
@@ -51,11 +50,6 @@ public final class SetAccruedClaimBlocksCommand implements CommandExecutor, TabC
     public boolean onCommand(@NotNull final CommandSender sender, @NotNull final Command command, @NotNull final String s, @NotNull final String[] args)
     {
         // command can be issued by player or console
-        Player player = null;
-        if (sender instanceof Player)
-        {
-            player = (Player) sender;
-        }
 
         //requires exactly two parameters, the other player's name and the new amount
         if (args.length != 2) return false;
@@ -75,7 +69,7 @@ public final class SetAccruedClaimBlocksCommand implements CommandExecutor, TabC
         OfflinePlayer targetPlayer = plugin.resolvePlayerByName(args[0]);
         if (targetPlayer == null)
         {
-            GriefPrevention.sendMessage(player, TextMode.Err, Messages.PlayerNotFound2);
+            GriefPrevention.sendMessage(sender, TextMode.Err, Messages.PlayerNotFound2);
             return true;
         }
 
@@ -84,9 +78,8 @@ public final class SetAccruedClaimBlocksCommand implements CommandExecutor, TabC
         playerData.setAccruedClaimBlocks(newAmount);
         plugin.dataStore.savePlayerData(targetPlayer.getUniqueId(), playerData);
 
-        GriefPrevention.sendMessage(player, TextMode.Success, Messages.SetClaimBlocksSuccess);
-        if (player != null)
-            GriefPrevention.AddLogEntry(player.getName() + " set " + targetPlayer.getName() + "'s accrued claim blocks to " + newAmount + ".", CustomLogEntryTypes.AdminActivity);
+        GriefPrevention.sendMessage(sender, TextMode.Success, Messages.SetClaimBlocksSuccess);
+        GriefPrevention.AddLogEntry(sender.getName() + " set " + targetPlayer.getName() + "'s accrued claim blocks to " + newAmount + ".", CustomLogEntryTypes.AdminActivity);
 
         return true;
     }

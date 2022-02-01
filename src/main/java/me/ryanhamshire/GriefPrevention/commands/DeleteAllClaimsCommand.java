@@ -51,11 +51,6 @@ public final class DeleteAllClaimsCommand implements CommandExecutor, TabComplet
     public boolean onCommand(@NotNull final CommandSender sender, @NotNull final Command command, @NotNull final String s, @NotNull final String[] args)
     {
         // command can be issued by player or console
-        Player player = null;
-        if (sender instanceof Player)
-        {
-            player = (Player) sender;
-        }
 
         //requires exactly one parameter, the other player's name
         if (args.length != 1) return false;
@@ -64,18 +59,18 @@ public final class DeleteAllClaimsCommand implements CommandExecutor, TabComplet
         OfflinePlayer otherPlayer = plugin.resolvePlayerByName(args[0]);
         if (otherPlayer == null)
         {
-            GriefPrevention.sendMessage(player, TextMode.Err, Messages.PlayerNotFound2);
+            GriefPrevention.sendMessage(sender, TextMode.Err, Messages.PlayerNotFound2);
             return true;
         }
 
         //delete all that player's claims
         plugin.dataStore.deleteClaimsForPlayer(otherPlayer.getUniqueId(), true);
 
-        GriefPrevention.sendMessage(player, TextMode.Success, Messages.DeleteAllSuccess, otherPlayer.getName());
-        if (player != null)
-        {
-            GriefPrevention.AddLogEntry(player.getName() + " deleted all claims belonging to " + otherPlayer.getName() + ".", CustomLogEntryTypes.AdminActivity);
+        GriefPrevention.sendMessage(sender, TextMode.Success, Messages.DeleteAllSuccess, otherPlayer.getName());
+        GriefPrevention.AddLogEntry(sender.getName() + " deleted all claims belonging to " + otherPlayer.getName() + ".", CustomLogEntryTypes.AdminActivity);
 
+        if (sender instanceof Player player)
+        {
             //revert any current visualization
             Visualization.Revert(player);
         }

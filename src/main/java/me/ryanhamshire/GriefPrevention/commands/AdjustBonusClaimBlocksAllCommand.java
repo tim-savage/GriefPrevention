@@ -36,11 +36,6 @@ public final class AdjustBonusClaimBlocksAllCommand implements CommandExecutor
     public boolean onCommand(@NotNull final CommandSender sender, @NotNull final Command command, @NotNull final String s, @NotNull final String[] args)
     {
         // command can be issued by player or console
-        Player player = null;
-        if (sender instanceof Player)
-        {
-            player = (Player) sender;
-        }
 
         // requires exactly one parameter, the amount of adjustment
         if (args.length != 1) return false;
@@ -68,8 +63,8 @@ public final class AdjustBonusClaimBlocksAllCommand implements CommandExecutor
             builder.append(onlinePlayer.getName()).append(' ');
         }
 
-        GriefPrevention.sendMessage(player, TextMode.Success, Messages.AdjustBlocksAllSuccess, String.valueOf(adjustment));
-        GriefPrevention.AddLogEntry("Adjusted all " + count + "players' bonus claim blocks by " + adjustment + ".  " + builder.toString(), CustomLogEntryTypes.AdminActivity);
+        GriefPrevention.sendMessage(sender, TextMode.Success, Messages.AdjustBlocksAllSuccess, String.valueOf(adjustment));
+        GriefPrevention.AddLogEntry("Adjusted all " + count + "players' bonus claim blocks by " + adjustment + ".  " + builder, CustomLogEntryTypes.AdminActivity);
 
         return true;
     }

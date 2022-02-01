@@ -35,26 +35,21 @@ public final class DeleteAllAdminClaimsCommand implements CommandExecutor
     public boolean onCommand(@NotNull final CommandSender sender, @NotNull final Command command, @NotNull final String s, @NotNull final String[] args)
     {
         // command can be issued by player or console
-        Player player = null;
-        if (sender instanceof Player)
-        {
-            player = (Player) sender;
-        }
 
         if (!sender.hasPermission("griefprevention.deleteclaims"))
         {
-            GriefPrevention.sendMessage(player, TextMode.Err, Messages.NoDeletePermission);
+            GriefPrevention.sendMessage(sender, TextMode.Err, Messages.NoDeletePermission);
             return true;
         }
 
         //delete all admin claims
         plugin.dataStore.deleteClaimsForPlayer(null, true);  //null for owner id indicates an administrative claim
 
-        GriefPrevention.sendMessage(player, TextMode.Success, Messages.AllAdminDeleted);
-        if (player != null)
-        {
-            GriefPrevention.AddLogEntry(player.getName() + " deleted all administrative claims.", CustomLogEntryTypes.AdminActivity);
+        GriefPrevention.sendMessage(sender, TextMode.Success, Messages.AllAdminDeleted);
+        GriefPrevention.AddLogEntry(sender.getName() + " deleted all administrative claims.", CustomLogEntryTypes.AdminActivity);
 
+        if (sender instanceof Player player)
+        {
             //revert any current visualization
             Visualization.Revert(player);
         }

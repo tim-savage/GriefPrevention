@@ -9,8 +9,8 @@ import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.command.TabCompleter;
-import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Collections;
@@ -50,16 +50,10 @@ public final class DeleteClaimsInWorldCommand implements CommandExecutor, TabCom
     @Override
     public boolean onCommand(@NotNull final CommandSender sender, @NotNull final Command command, @NotNull final String s, @NotNull final String[] args)
     {
-        Player player = null;
-        if (sender instanceof Player)
-        {
-            player = (Player) sender;
-        }
-
         //must be executed at the console
-        if (player != null)
+        if (!(sender instanceof ConsoleCommandSender))
         {
-            GriefPrevention.sendMessage(player, TextMode.Err, Messages.ConsoleOnlyCommand);
+            GriefPrevention.sendMessage(sender, TextMode.Err, Messages.ConsoleOnlyCommand);
             return true;
         }
 
@@ -70,9 +64,7 @@ public final class DeleteClaimsInWorldCommand implements CommandExecutor, TabCom
         World world = Bukkit.getServer().getWorld(args[0]);
         if (world == null)
         {
-            // FIXME: This message will only be sent to a null player.
-            //  Suggested fix: allow sendMessage to take CommandSender as argument, of which Player is subclass
-            GriefPrevention.sendMessage(player, TextMode.Err, Messages.WorldNotFound);
+            GriefPrevention.sendMessage(sender, TextMode.Err, Messages.WorldNotFound);
             return true;
         }
 

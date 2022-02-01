@@ -8,7 +8,6 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
-import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Collections;
@@ -56,11 +55,6 @@ public final class UnseparateCommand implements CommandExecutor, TabCompleter
     public boolean onCommand(@NotNull final CommandSender sender, @NotNull final Command command, @NotNull final String s, @NotNull final String[] args)
     {
         // command can be issued by player or console
-        Player player = null;
-        if (sender instanceof Player)
-        {
-            player = (Player) sender;
-        }
 
         //requires two player names
         if (args.length < 2) return false;
@@ -69,21 +63,21 @@ public final class UnseparateCommand implements CommandExecutor, TabCompleter
         OfflinePlayer targetPlayer = plugin.resolvePlayerByName(args[0]);
         if (targetPlayer == null)
         {
-            GriefPrevention.sendMessage(player, TextMode.Err, Messages.PlayerNotFound2);
+            GriefPrevention.sendMessage(sender, TextMode.Err, Messages.PlayerNotFound2);
             return true;
         }
 
         OfflinePlayer targetPlayer2 = plugin.resolvePlayerByName(args[1]);
         if (targetPlayer2 == null)
         {
-            GriefPrevention.sendMessage(player, TextMode.Err, Messages.PlayerNotFound2);
+            GriefPrevention.sendMessage(sender, TextMode.Err, Messages.PlayerNotFound2);
             return true;
         }
 
         plugin.setIgnoreStatus(targetPlayer, targetPlayer2, GriefPrevention.IgnoreMode.None);
         plugin.setIgnoreStatus(targetPlayer2, targetPlayer, GriefPrevention.IgnoreMode.None);
 
-        GriefPrevention.sendMessage(player, TextMode.Success, Messages.UnSeparateConfirmation);
+        GriefPrevention.sendMessage(sender, TextMode.Success, Messages.UnSeparateConfirmation);
 
         return true;
     }

@@ -50,11 +50,6 @@ public final class ClaimBookCommand implements CommandExecutor, TabCompleter
     public boolean onCommand(@NotNull final CommandSender sender, @NotNull final Command command, @NotNull final String s, @NotNull final String[] args)
     {
         // command can be issued by player or console
-        Player player = null;
-        if (sender instanceof Player)
-        {
-            player = (Player) sender;
-        }
 
         //requires one parameter
         if (args.length != 1) return false;
@@ -63,7 +58,7 @@ public final class ClaimBookCommand implements CommandExecutor, TabCompleter
         Player otherPlayer = plugin.getServer().getPlayer(args[0]);
         if (otherPlayer == null)
         {
-            GriefPrevention.sendMessage(player, TextMode.Err, Messages.PlayerNotFound2);
+            GriefPrevention.sendMessage(sender, TextMode.Err, Messages.PlayerNotFound2);
             return true;
         }
         else

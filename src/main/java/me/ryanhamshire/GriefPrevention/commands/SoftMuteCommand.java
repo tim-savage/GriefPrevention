@@ -9,7 +9,6 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
-import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Collections;
@@ -50,11 +49,6 @@ public final class SoftMuteCommand implements CommandExecutor, TabCompleter
     public boolean onCommand(@NotNull final CommandSender sender, @NotNull final Command command, @NotNull final String s, @NotNull final String[] args)
     {
         // command can be issued by player or console
-        Player player = null;
-        if (sender instanceof Player)
-        {
-            player = (Player) sender;
-        }
 
         //requires one parameter
         if (args.length != 1) return false;
@@ -63,7 +57,7 @@ public final class SoftMuteCommand implements CommandExecutor, TabCompleter
         OfflinePlayer targetPlayer = plugin.resolvePlayerByName(args[0]);
         if (targetPlayer == null)
         {
-            GriefPrevention.sendMessage(player, TextMode.Err, Messages.PlayerNotFound2);
+            GriefPrevention.sendMessage(sender, TextMode.Err, Messages.PlayerNotFound2);
             return true;
         }
 
@@ -71,18 +65,12 @@ public final class SoftMuteCommand implements CommandExecutor, TabCompleter
         boolean isMuted = plugin.dataStore.toggleSoftMute(targetPlayer.getUniqueId());
         if (isMuted)
         {
-            GriefPrevention.sendMessage(player, TextMode.Success, Messages.SoftMuted, targetPlayer.getName());
-            String executorName = "console";
-            if (player != null)
-            {
-                executorName = player.getName();
-            }
-
-            GriefPrevention.AddLogEntry(executorName + " muted " + targetPlayer.getName() + ".", CustomLogEntryTypes.AdminActivity, true);
+            GriefPrevention.sendMessage(sender, TextMode.Success, Messages.SoftMuted, targetPlayer.getName());
+            GriefPrevention.AddLogEntry(sender + " muted " + targetPlayer.getName() + ".", CustomLogEntryTypes.AdminActivity, true);
         }
         else
         {
-            GriefPrevention.sendMessage(player, TextMode.Success, Messages.UnSoftMuted, targetPlayer.getName());
+            GriefPrevention.sendMessage(sender, TextMode.Success, Messages.UnSoftMuted, targetPlayer.getName());
         }
 
         return true;
