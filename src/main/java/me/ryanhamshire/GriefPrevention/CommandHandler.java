@@ -92,6 +92,15 @@ public final class CommandHandler
     }
 
     /**
+     * Getter for configuration variable to enable/disable tab completion in commands
+     * @return true if tab completion is enable, false if it is disabled
+     */
+    public boolean tabCompletionEnabled() {
+        //TODO: this will reference a configuration variable, once that variable has been defined in main class
+        return true;
+    }
+
+    /**
      * Match offline player names with prefix. Overloaded method to allow omitting {@code excludeSelf} parameter (defaults true).
      * @param sender the command sender
      * @param prefix the player name being typed
