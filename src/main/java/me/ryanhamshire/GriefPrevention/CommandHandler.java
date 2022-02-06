@@ -1,6 +1,5 @@
 package me.ryanhamshire.GriefPrevention;
 
-import org.bukkit.OfflinePlayer;
 import org.bukkit.World;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
