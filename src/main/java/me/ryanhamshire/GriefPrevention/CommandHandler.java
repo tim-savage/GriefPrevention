@@ -95,43 +95,6 @@ public final class CommandHandler
     /**
      * Match offline player names with prefix. Overloaded method to allow omitting {@code excludeSelf} parameter (defaults true).
      * @param sender the command sender
-     * @param prefix the prefix string to match
-     * @return List of String of matching offline player names
-     */
-    public List<String> matchOfflinePlayers(final CommandSender sender, final String prefix)
-    {
-        return matchOfflinePlayers(sender, prefix, true);
-    }
-
-    /**
-     * Match offline player names with prefix
-     * @param sender the command sender
-     * @param prefix the prefix string to match
-     * @param excludeSelf should sender be removed from the returned list of names
-     * @return List of String of matching offline player names
-     */
-    public List<String> matchOfflinePlayers(final CommandSender sender, final String prefix, final boolean excludeSelf)
-    {
-        List<String> results = new LinkedList<>();
-        for (OfflinePlayer otherPlayer : plugin.getServer().getOfflinePlayers())
-        {
-            // if other player name matches prefix, add name to results list
-            if (otherPlayer.getName() != null && otherPlayer.getName().startsWith(prefix))
-            {
-                results.add(otherPlayer.getName());
-            }
-            // if command sender is in-game player, remove name from results list
-            if (excludeSelf && sender instanceof Player player)
-            {
-                results.remove(player.getName());
-            }
-        }
-        return results;
-    }
-
-    /**
-     * Match offline player names with prefix. Overloaded method to allow omitting {@code excludeSelf} parameter (defaults true).
-     * @param sender the command sender
      * @param prefix the player name being typed
      * @return List of String of matching offline player names
      */
