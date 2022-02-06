@@ -2876,7 +2876,7 @@ public class GriefPrevention extends JavaPlugin
         return location.getWorld().getName() + ": x" + location.getBlockX() + ", z" + location.getBlockZ();
     }
 
-    private boolean abandonClaimHandler(Player player, boolean deleteTopLevelClaim)
+    public boolean abandonClaimHandler(Player player, boolean deleteTopLevelClaim)
     {
         PlayerData playerData = this.dataStore.getPlayerData(player.getUniqueId());
 
