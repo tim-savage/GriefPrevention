@@ -101,7 +101,7 @@ public final class CommandHandler
     }
 
     /**
-     * Match offline player names with prefix. Overloaded method to allow omitting {@code excludeSelf} parameter (defaults true).
+     * Match online player names with prefix. Overloaded method to allow omitting {@code excludeSelf} parameter (defaults true).
      * @param sender the command sender
      * @param prefix the player name being typed
      * @return List of String of matching offline player names
@@ -112,7 +112,7 @@ public final class CommandHandler
     }
 
     /**
-     * Match offline player names with prefix
+     * Match online player names with prefix
      * @param sender the command sender
      * @param prefix the player name being typed
      * @param excludeSelf should sender be removed from the returned list of names
