@@ -3176,7 +3176,7 @@ public class GriefPrevention extends JavaPlugin
     }
 
     //helper method to resolve a player name from the player's UUID
-    static String lookupPlayerName(UUID playerID)
+    public static String lookupPlayerName(UUID playerID)
     {
         //parameter validation
         if (playerID == null) return "somebody";
