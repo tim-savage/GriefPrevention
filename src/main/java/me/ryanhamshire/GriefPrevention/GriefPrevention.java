@@ -399,7 +399,7 @@ public class GriefPrevention extends JavaPlugin
         catch (Throwable ignored) {}
     }
 
-    private void loadConfig()
+    public void loadConfig()
     {
         //load the config if it exists
         FileConfiguration config = YamlConfiguration.loadConfiguration(new File(DataStore.configFilePath));
