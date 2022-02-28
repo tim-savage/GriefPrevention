@@ -183,7 +183,7 @@ public class GriefPrevention extends JavaPlugin
     public boolean config_lockDeathDropsInPvpWorlds;                //whether players' dropped on death items are protected in pvp worlds
     public boolean config_lockDeathDropsInNonPvpWorlds;             //whether players' dropped on death items are protected in non-pvp worlds
 
-    private EconomyHandler economyHandler;
+    public EconomyHandler economyHandler;
     public int config_economy_claimBlocksMaxBonus;                  //max "bonus" blocks a player can buy.  set to zero for no limit.
     public double config_economy_claimBlocksPurchaseCost;            //cost to purchase a claim block.  set to zero to disable purchase.
     public double config_economy_claimBlocksSellValue;                //return on a sold claim block.  set to zero to disable sale.
