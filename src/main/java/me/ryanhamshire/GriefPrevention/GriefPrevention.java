@@ -3632,7 +3632,7 @@ public class GriefPrevention extends JavaPlugin
         return false;
     }
 
-    void autoExtendClaim(Claim newClaim)
+    public void autoExtendClaim(Claim newClaim)
     {
         //auto-extend it downward to cover anything already built underground
         Location lesserCorner = newClaim.getLesserBoundaryCorner();
