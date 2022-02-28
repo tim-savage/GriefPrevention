@@ -1,5 +1,50 @@
 package me.ryanhamshire.GriefPrevention;
 
+import me.ryanhamshire.GriefPrevention.commands.AbandonAllClaimsCommand;
+import me.ryanhamshire.GriefPrevention.commands.AbandonClaimCommand;
+import me.ryanhamshire.GriefPrevention.commands.AccessTrustCommand;
+import me.ryanhamshire.GriefPrevention.commands.AdjustBonusClaimBlocksAllCommand;
+import me.ryanhamshire.GriefPrevention.commands.AdjustBonusClaimBlocksCommand;
+import me.ryanhamshire.GriefPrevention.commands.AdminClaimListCommand;
+import me.ryanhamshire.GriefPrevention.commands.AdminClaimsCommand;
+import me.ryanhamshire.GriefPrevention.commands.BasicClaimsCommand;
+import me.ryanhamshire.GriefPrevention.commands.BuyClaimBlocksCommand;
+import me.ryanhamshire.GriefPrevention.commands.ClaimBookCommand;
+import me.ryanhamshire.GriefPrevention.commands.ClaimCommand;
+import me.ryanhamshire.GriefPrevention.commands.ClaimExplosionsCommand;
+import me.ryanhamshire.GriefPrevention.commands.ClaimsListCommand;
+import me.ryanhamshire.GriefPrevention.commands.ContainerTrustCommand;
+import me.ryanhamshire.GriefPrevention.commands.DeleteAllAdminClaimsCommand;
+import me.ryanhamshire.GriefPrevention.commands.DeleteAllClaimsCommand;
+import me.ryanhamshire.GriefPrevention.commands.DeleteClaimCommand;
+import me.ryanhamshire.GriefPrevention.commands.DeleteClaimsInWorldCommand;
+import me.ryanhamshire.GriefPrevention.commands.DeleteUserClaimsInWorldCommand;
+import me.ryanhamshire.GriefPrevention.commands.ExtendClaimCommand;
+import me.ryanhamshire.GriefPrevention.commands.GPBlockInfoCommand;
+import me.ryanhamshire.GriefPrevention.commands.GPReloadCommand;
+import me.ryanhamshire.GriefPrevention.commands.GivePetCommand;
+import me.ryanhamshire.GriefPrevention.commands.IgnoreClaimsCommand;
+import me.ryanhamshire.GriefPrevention.commands.IgnorePlayerCommand;
+import me.ryanhamshire.GriefPrevention.commands.IgnoredPlayerListCommand;
+import me.ryanhamshire.GriefPrevention.commands.PermissionTrustCommand;
+import me.ryanhamshire.GriefPrevention.commands.RestoreNatureAggressiveCommand;
+import me.ryanhamshire.GriefPrevention.commands.RestoreNatureCommand;
+import me.ryanhamshire.GriefPrevention.commands.RestoreNatureFillCommand;
+import me.ryanhamshire.GriefPrevention.commands.RestrictSubclaimCommand;
+import me.ryanhamshire.GriefPrevention.commands.SellClaimBlocksCommand;
+import me.ryanhamshire.GriefPrevention.commands.SeparateCommand;
+import me.ryanhamshire.GriefPrevention.commands.SetAccruedClaimBlocksCommand;
+import me.ryanhamshire.GriefPrevention.commands.SiegeCommand;
+import me.ryanhamshire.GriefPrevention.commands.SoftMuteCommand;
+import me.ryanhamshire.GriefPrevention.commands.SubdivideClaimsCommand;
+import me.ryanhamshire.GriefPrevention.commands.TransferClaimCommand;
+import me.ryanhamshire.GriefPrevention.commands.TrappedCommand;
+import me.ryanhamshire.GriefPrevention.commands.TrustCommand;
+import me.ryanhamshire.GriefPrevention.commands.TrustListCommand;
+import me.ryanhamshire.GriefPrevention.commands.UnignorePlayerCommand;
+import me.ryanhamshire.GriefPrevention.commands.UnlockDropsCommand;
+import me.ryanhamshire.GriefPrevention.commands.UnseparateCommand;
+import me.ryanhamshire.GriefPrevention.commands.UntrustCommand;
 import org.bukkit.World;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -29,66 +74,65 @@ public final class CommandHandler
         this.plugin = plugin;
 
         // player commands
-//        new AbandonAllClaimsCommand(plugin);
-//        new AbandonClaimCommand(plugin);
-//        new AbandonTopLevelClaimCommand(plugin);
-//
-//        new ClaimCommand(plugin);
-//        new ClaimsListCommand(plugin);
-//        new DeleteClaimCommand(plugin);
-//        new ExtendClaimCommand(plugin);
-//        new ClaimExplosionsCommand(plugin);
-//
-//        new GivePetCommand(plugin);
-//        new SiegeCommand(plugin);
-//        new TrappedCommand(plugin);
-//
-//        new SubdivideClaimsCommand(plugin);
-//        new RestrictSubclaimCommand(plugin);
-//
-//        new TrustCommand(plugin);
-//        new AccessTrustCommand(plugin);
-//        new ContainerTrustCommand(plugin);
-//        new PermissionTrustCommand(plugin);
-//        new UntrustCommand(plugin);
-//        new TrustListCommand(plugin);
-//
-//        new IgnorePlayerCommand(plugin);
-//        new UnignorePlayerCommand(plugin);
-//        new IgnoredPlayerListCommand(plugin);
-//
-//        new BuyClaimBlocksCommand(plugin);
-//        new SellClaimBlocksCommand(plugin);
-//
-//        new DeleteAllClaimsCommand(plugin);
-//        new DeleteClaimsInWorldCommand(plugin);
-//        new DeleteUserClaimsInWorldCommand(plugin);
-//        new DeleteAllAdminClaimsCommand(plugin);
-//
-//        // admin commands
-//        new AdminClaimsCommand(plugin);
-//        new BasicClaimsCommand(plugin);
-//        new IgnoreClaimsCommand(plugin);
-//
-//        new ClaimBookCommand(plugin);
-//        new AdminClaimListCommand(plugin);
-//        new SoftMuteCommand(plugin);
-//        new GPReloadCommand(plugin);
-//        new GPBlockInfoCommand(plugin);
-//
-//        new RestoreNatureCommand(plugin);
-//        new RestoreNatureAggressiveCommand(plugin);
-//        new RestoreNatureFillCommand(plugin);
-//
-//        new AdjustBonusClaimBlocksCommand(plugin);
-//        new AdjustBonusClaimBlocksAllCommand(plugin);
-//        new SetAccruedClaimBlocksCommand(plugin);
-//
-//        new SeparateCommand(plugin);
-//        new UnseparateCommand(plugin);
-//
-//        new TransferClaimCommand(plugin);
-//        new UnlockDropsCommand(plugin);
+        new AbandonAllClaimsCommand(plugin);
+        new AbandonClaimCommand(plugin);
+
+        new ClaimCommand(plugin);
+        new ClaimsListCommand(plugin);
+        new DeleteClaimCommand(plugin);
+        new ExtendClaimCommand(plugin);
+        new ClaimExplosionsCommand(plugin);
+
+        new GivePetCommand(plugin);
+        new SiegeCommand(plugin);
+        new TrappedCommand(plugin);
+
+        new SubdivideClaimsCommand(plugin);
+        new RestrictSubclaimCommand(plugin);
+
+        new TrustCommand(plugin);
+        new AccessTrustCommand(plugin);
+        new ContainerTrustCommand(plugin);
+        new PermissionTrustCommand(plugin);
+        new UntrustCommand(plugin);
+        new TrustListCommand(plugin);
+
+        new IgnorePlayerCommand(plugin);
+        new UnignorePlayerCommand(plugin);
+        new IgnoredPlayerListCommand(plugin);
+
+        new BuyClaimBlocksCommand(plugin);
+        new SellClaimBlocksCommand(plugin);
+
+        new DeleteAllClaimsCommand(plugin);
+        new DeleteClaimsInWorldCommand(plugin);
+        new DeleteUserClaimsInWorldCommand(plugin);
+        new DeleteAllAdminClaimsCommand(plugin);
+
+        // admin commands
+        new AdminClaimsCommand(plugin);
+        new BasicClaimsCommand(plugin);
+        new IgnoreClaimsCommand(plugin);
+
+        new ClaimBookCommand(plugin);
+        new AdminClaimListCommand(plugin);
+        new SoftMuteCommand(plugin);
+        new GPReloadCommand(plugin);
+        new GPBlockInfoCommand(plugin);
+
+        new RestoreNatureCommand(plugin);
+        new RestoreNatureAggressiveCommand(plugin);
+        new RestoreNatureFillCommand(plugin);
+
+        new AdjustBonusClaimBlocksCommand(plugin);
+        new AdjustBonusClaimBlocksAllCommand(plugin);
+        new SetAccruedClaimBlocksCommand(plugin);
+
+        new SeparateCommand(plugin);
+        new UnseparateCommand(plugin);
+
+        new TransferClaimCommand(plugin);
+        new UnlockDropsCommand(plugin);
     }
 
     /**
