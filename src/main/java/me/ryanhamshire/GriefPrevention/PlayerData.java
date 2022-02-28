@@ -149,6 +149,18 @@ public class PlayerData
         return true;
     }
 
+    // getter for fillRadius
+    public int getFillRadius()
+    {
+        return fillRadius;
+    }
+
+    // setter for fillRadius
+    public void setFillRadius(int fillRadius)
+    {
+        this.fillRadius = fillRadius;
+    }
+
     //the number of claim blocks a player has available for claiming land
     public int getRemainingClaimBlocks()
     {
