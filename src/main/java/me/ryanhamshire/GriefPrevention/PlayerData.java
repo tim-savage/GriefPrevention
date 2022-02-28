@@ -167,6 +167,12 @@ public class PlayerData
         this.petGiveawayRecipient = petGiveawayRecipient;
     }
 
+    // setter for dropsAreUnlocked
+    public void setDropsAreUnlocked(boolean dropsAreUnlocked)
+    {
+        this.dropsAreUnlocked = dropsAreUnlocked;
+    }
+
     //the number of claim blocks a player has available for claiming land
     public int getRemainingClaimBlocks()
     {
