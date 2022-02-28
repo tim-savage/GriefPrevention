@@ -281,7 +281,7 @@ public abstract class DataStore
     }
 
     //updates soft mute map and data file
-    boolean toggleSoftMute(UUID playerID)
+    public boolean toggleSoftMute(UUID playerID)
     {
         boolean newValue = !this.isSoftMuted(playerID);
 
