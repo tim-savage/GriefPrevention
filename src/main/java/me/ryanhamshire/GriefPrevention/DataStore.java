@@ -340,7 +340,7 @@ public abstract class DataStore
     }
 
     //removes cached player data from memory
-    synchronized void clearCachedPlayerData(UUID playerID)
+    public synchronized void clearCachedPlayerData(UUID playerID)
     {
         this.playerNameToPlayerDataMap.remove(playerID);
     }
