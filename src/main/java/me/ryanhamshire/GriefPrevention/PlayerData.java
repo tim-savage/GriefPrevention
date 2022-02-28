@@ -161,6 +161,12 @@ public class PlayerData
         this.fillRadius = fillRadius;
     }
 
+    // setter for petGiveawayRecipient
+    public void setPetGiveawayRecipient(OfflinePlayer petGiveawayRecipient)
+    {
+        this.petGiveawayRecipient = petGiveawayRecipient;
+    }
+
     //the number of claim blocks a player has available for claiming land
     public int getRemainingClaimBlocks()
     {
