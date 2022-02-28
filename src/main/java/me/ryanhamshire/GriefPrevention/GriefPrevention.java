@@ -3385,7 +3385,7 @@ public class GriefPrevention extends JavaPlugin
     }
 
     //determines whether creative anti-grief rules apply at a location
-    boolean creativeRulesApply(Location location)
+    public boolean creativeRulesApply(Location location)
     {
         if (!this.config_creativeWorldsExist) return false;
 
